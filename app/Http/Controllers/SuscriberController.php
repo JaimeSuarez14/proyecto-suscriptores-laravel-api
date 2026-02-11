@@ -30,7 +30,7 @@ class SuscriberController extends Controller
     {
         $request->validate([
             'name'=>'required|string|max:100',
-            'email'=> 'required|email|unique:suscribers, email',
+            'email'=> 'required|email|unique:suscribers,email',
         ]);
 
         $suscriber = Suscriber::create( $request->all() );
