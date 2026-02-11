@@ -12,7 +12,7 @@ class SuscriberController extends Controller
      */
     public function index()
     {
-        //
+        return Suscriber::all();
     }
 
     /**
@@ -28,7 +28,13 @@ class SuscriberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required|string|max:100',
+            'email'=> 'required|email|unique:suscribers, email',
+        ]);
+
+        $suscriber = Suscriber::create( $request->all() );
+        return response()->json($suscriber, 201);
     }
 
     /**
